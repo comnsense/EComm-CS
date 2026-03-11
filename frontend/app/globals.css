@@ -1,0 +1,80 @@
+@reference "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --primary-bg: #0a0c14;
+  --secondary-bg: #1a1f2e;
+  --accent-green: #8bc34a;
+  --accent-blue: #42a5f5;
+  --text-light: #ffffff;
+  --text-dark: #1a1a2e;
+  --header-bg: rgba(10, 15, 25, 0.95);
+  --card-bg: rgba(20, 30, 40, 0.4);
+}
+
+[data-theme="light"] {
+  --primary-bg: #f0f4f8;
+  --secondary-bg: #ffffff;
+  --text-light: #1a1a2e;
+  --header-bg: rgba(255, 255, 255, 0.98);
+  --card-bg: rgba(255, 255, 255, 0.9);
+}
+
+@layer base {
+  body {
+    @apply bg-[var(--primary-bg)] text-[var(--text-light)];
+    font-family: 'Nunito', sans-serif;
+  }
+}
+
+@layer components {
+  .card-title {
+    @apply flex items-center justify-center gap-4 mb-10 text-2xl font-bold;
+  }
+
+  .resume-card {
+    @apply bg-[var(--card-bg)] backdrop-blur-lg border border-[#8bc34a] rounded-3xl p-8 shadow-2xl;
+  }
+
+  .skill-tag {
+    @apply inline-flex items-center gap-2 px-4 py-2 rounded-full border border-[#8bc34a] bg-[var(--card-bg)] hover:bg-[#8bc34a] hover:text-[#1a1a2e] transition-all duration-300;
+  }
+
+  .projects-grid {
+    @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6;
+  }
+
+  .social-link {
+    @apply flex items-center justify-center w-12 h-12 border-2 border-[#8bc34a] rounded-full transition-all duration-300 hover:bg-[#8bc34a] hover:scale-110;
+  }
+
+  /* Премахване на точките от всички списъци */
+ul, ol {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+li {
+  list-style: none;
+}
+
+/* Премахване на подчертаване от всички линкове */
+a {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+/* Специално за social links */
+.social-links,
+.social-links li,
+.social-links a {
+  list-style: none;
+  text-decoration: none;
+}
+}
