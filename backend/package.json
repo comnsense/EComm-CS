@@ -17,6 +17,7 @@
   "dependencies": {
     "@headlessui/react": "^2.2.9",
     "@heroicons/react": "^2.2.0",
+    "@strapi/data-transfer": "^5.39.0",
     "@strapi/plugin-cloud": "5.39.0",
     "@strapi/plugin-users-permissions": "^5.39.0",
     "@strapi/strapi": "5.39.0",
