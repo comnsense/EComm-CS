@@ -1,12 +1,4 @@
 # 🛍️ EComm-CS -  eCommerce проект
-
-![Next.js](https://img.shields.io/badge/Next.js-16-black)
-![Strapi](https://img.shields.io/badge/Strapi-5-blue)
-![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue)
-![TailwindCSS](https://img.shields.io/badge/TailwindCSS-3.0-green)
-![License](https://img.shields.io/badge/license-MIT-green)
-# 🛍️ EComm-CS -  eCommerce проект
-
 ![Next.js](https://img.shields.io/badge/Next.js-16-black)
 ![Strapi](https://img.shields.io/badge/Strapi-5-blue)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue)
