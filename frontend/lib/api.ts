@@ -47,7 +47,7 @@ export async function fetchFeaturedProducts() {
 // КАТЕГОРИИ
 // ============================================
 
-// 👇 ТАЗИ ФУНКЦИЯ ТРЯБВА ДА Я ИМА - ВЗИМАНЕ НА ВСИЧКИ КАТЕГОРИИ
+// ВЗИМАНЕ НА ВСИЧКИ КАТЕГОРИИ
 export async function fetchCategories() {
   try {
     console.log('🔍 Fetching all categories...');
@@ -89,22 +89,9 @@ export async function fetchProductsByCategory(categorySlug: string) {
   try {
     console.log('🔍 Търсене на продукти за категория:', categorySlug);
     
-    // Първо намираме категорията по slug
-    const catRes = await fetch(`${API_URL}/categories?filters[slug][$eq]=${categorySlug}`);
-    const catData = await catRes.json();
-    
-    if (!catData.data || catData.data.length === 0) {
-      console.log('❌ Няма категория със slug:', categorySlug);
-      return { data: [] };
-    }
-    
-    const categoryId = catData.data[0].id;
-    console.log('🆔 ID на категория:', categoryId);
-    
-    // Търсим продукти с тази категория
-    // ВАЖНО: Името на полето може да е различно - проверете в Strapi!
+    // В Strapi 5, category е масив, затова търсим по category.slug
     const res = await fetch(
-      `${API_URL}/products?filters[category][id][$eq]=${categoryId}&populate=*`
+      `${API_URL}/products?filters[category][slug][$eq]=${categorySlug}&populate=*`
     );
     
     if (!res.ok) {
@@ -119,5 +106,34 @@ export async function fetchProductsByCategory(categorySlug: string) {
   } catch (error) {
     console.warn('❌ Грешка при fetchProductsByCategory:', error);
     return { data: [] };
+  }
+}
+
+// ============================================
+// БРОЙ ПРОДУКТИ В КАТЕГОРИЯ
+// ============================================
+
+// ВЗИМАНЕ НА БРОЙ ПРОДУКТИ В КАТЕГОРИЯ
+export async function fetchProductCountByCategory(categorySlug: string) {
+  try {
+    console.log('🔍 Търсене на брой продукти за категория:', categorySlug);
+    
+    const res = await fetch(
+      `${API_URL}/products?filters[category][slug][$eq]=${categorySlug}&pagination[pageSize]=1`
+    );
+    
+    if (!res.ok) {
+      console.log('❌ Грешка при заявка за брой:', res.status);
+      return 0;
+    }
+    
+    const data = await res.json();
+    const count = data.meta?.pagination?.total || 0;
+    console.log(`✅ Брой продукти в категория ${categorySlug}: ${count}`);
+    
+    return count;
+  } catch (error) {
+    console.warn('❌ Грешка при fetchProductCountByCategory:', error);
+    return 0;
   }
 }

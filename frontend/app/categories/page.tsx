@@ -1,19 +1,41 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { fetchCategories } from '@/lib/api';
+import { fetchCategories, fetchProductCountByCategory } from '@/lib/api';
 import Link from 'next/link';
 
 export default function CategoriesPage() {
     const [categories, setCategories] = useState([]);
+    const [productCounts, setProductCounts] = useState<{ [key: string]: number }>({});
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        const loadCategories = async () => {
+        const loadCategoriesWithCounts = async () => {
             try {
+                // Вземаме всички категории
                 const data = await fetchCategories();
                 console.log('Categories data:', data);
-                setCategories(data.data || []);
+                const cats = data.data || [];
+                setCategories(cats);
+
+                // За всяка категория вземаме броя на продуктите
+                const counts: { [key: string]: number } = {};
+
+                // Правим заявки за всички категории паралелно
+                await Promise.all(
+                    cats.map(async (category: any) => {
+                        try {
+                            const count = await fetchProductCountByCategory(category.slug);
+                            counts[category.id] = count;
+                            console.log(`Категория ${category.name}: ${count} продукта`);
+                        } catch (error) {
+                            console.error(`Error fetching count for ${category.name}:`, error);
+                            counts[category.id] = 0;
+                        }
+                    })
+                );
+
+                setProductCounts(counts);
             } catch (error) {
                 console.error('Error loading categories:', error);
             } finally {
@@ -21,7 +43,7 @@ export default function CategoriesPage() {
             }
         };
 
-        loadCategories();
+        loadCategoriesWithCounts();
     }, []);
 
     const getDescription = (category: any) => {
@@ -106,26 +128,26 @@ export default function CategoriesPage() {
                                 className="group relative block"
                             >
                                 <div className={`
-                  relative p-8 bg-[var(--card-bg)] rounded-2xl 
-                  border-2 border-[#8bc34a] overflow-hidden
-                  transition-all duration-500 group-hover:scale-105 
-                  group-hover:shadow-2xl group-hover:shadow-[#8bc34a]/30
-                  hover:border-transparent
-                `}>
+                                    relative p-8 bg-[var(--card-bg)] rounded-2xl 
+                                    border-2 border-[#8bc34a] overflow-hidden
+                                    transition-all duration-500 group-hover:scale-105 
+                                    group-hover:shadow-2xl group-hover:shadow-[#8bc34a]/30
+                                    hover:border-transparent
+                                `}>
                                     {/* Градиентен фон при hover */}
                                     <div className={`
-                    absolute inset-0 bg-gradient-to-br ${gradient} 
-                    opacity-0 group-hover:opacity-100 transition-opacity duration-500
-                  `}></div>
+                                        absolute inset-0 bg-gradient-to-br ${gradient} 
+                                        opacity-0 group-hover:opacity-100 transition-opacity duration-500
+                                    `}></div>
 
                                     {/* Икона */}
                                     <div className="relative z-10 mb-4">
                                         <div className={`
-                      w-20 h-20 mx-auto rounded-full 
-                      bg-[#8bc34a]/20 group-hover:bg-white/20
-                      flex items-center justify-center
-                      transition-all duration-500 group-hover:scale-110
-                    `}>
+                                            w-20 h-20 mx-auto rounded-full 
+                                            bg-[#8bc34a]/20 group-hover:bg-white/20
+                                            flex items-center justify-center
+                                            transition-all duration-500 group-hover:scale-110
+                                        `}>
                                             <i className={`fas ${icon} text-4xl text-[#8bc34a] group-hover:text-white transition-colors duration-500`}></i>
                                         </div>
                                     </div>
@@ -142,10 +164,10 @@ export default function CategoriesPage() {
                                         </p>
                                     )}
 
-                                    {/* Брой продукти (ако има) */}
+                                    {/* Брой продукти - вече реален */}
                                     <div className="relative z-10 mt-4 inline-block px-3 py-1 rounded-full bg-[#8bc34a]/20 text-[#8bc34a] text-xs font-semibold group-hover:bg-white/20 group-hover:text-white transition-all duration-500">
                                         <i className="fas fa-box mr-1"></i>
-                                        0 продукта
+                                        {productCounts[category.id] || 0} продукта
                                     </div>
 
                                     {/* Стрелка за навигация */}
