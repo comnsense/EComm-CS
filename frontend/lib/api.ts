@@ -1,4 +1,5 @@
-const API_URL = 'http://localhost:1337/api';
+// ВАЖНО: Сменете API_URL с вашия Strapi Cloud URL
+const API_URL = process.env.NEXT_PUBLIC_API_URL || 'https://sacred-moonlight-34cc5fdcc7.strapiapp.com/api';
 
 // ============================================
 // ПРОДУКТИ

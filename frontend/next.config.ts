@@ -4,14 +4,12 @@ const nextConfig: NextConfig = {
   images: {
     remotePatterns: [
       {
-        protocol: 'http',
-        hostname: 'localhost',
-        port: '1337',
+        protocol: 'https',
+        hostname: 'sacred-moonlight-34cc5fdcc7.strapiapp.com',
+        port: '',
         pathname: '/uploads/**',
       },
     ],
-    // Важно за правилно зареждане
-    unoptimized: true, // Това ще реши проблема временно
   },
 };
 
