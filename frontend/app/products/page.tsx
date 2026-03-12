@@ -1,30 +1,18 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { fetchProducts } from '@/lib/api';
+import { fetchProducts, StrapiProduct } from '@/lib/api';
 import ProductCard from '@/components/ProductCard';
 import Link from 'next/link';
 
-// Дефинирайте тип за продукта
-interface Product {
-    id: number;
-    name: string;
-    slug: string;
-    price: number;
-    description?: any;
-    images?: any[];
-    category?: any[];
-}
-
 export default function ProductsPage() {
-    const [products, setProducts] = useState<Product[]>([]); // 👈 Ясен тип
+    const [products, setProducts] = useState<StrapiProduct[]>([]);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         const loadProducts = async () => {
             try {
                 const data = await fetchProducts();
-                console.log('Products data:', data);
                 setProducts(data.data || []);
             } catch (error) {
                 console.error('Error loading products:', error);
@@ -44,16 +32,13 @@ export default function ProductsPage() {
     }
 
     return (
-        <div style={{ maxWidth: '1400px', margin: '0 auto', padding: '2rem' }}>
-            <h1 style={{ color: '#8bc34a' }}>Всички продукти</h1>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <h1 className="text-3xl font-bold text-[#8bc34a] mb-8">Всички продукти</h1>
+
             {products.length === 0 ? (
-                <div>Няма продукти</div>
+                <div className="text-center py-12">Няма продукти</div>
             ) : (
-                <div style={{
-                    display: 'grid',
-                    gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-                    gap: '2rem'
-                }}>
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                     {products.map(p => <ProductCard key={p.id} product={p} />)}
                 </div>
             )}
