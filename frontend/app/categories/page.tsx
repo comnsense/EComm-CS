@@ -106,80 +106,28 @@ export default function CategoriesPage() {
                     </p>
                 </div>
             ) : (
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                    {categories.map((category: any, index: number) => {
-                        const icon = categoryIcons[category.name] || 'fa-folder';
-                        const colors = [
-                            'from-[#8bc34a] to-[#4caf50]',
-                            'from-[#42a5f5] to-[#1976d2]',
-                            'from-[#ff9800] to-[#f57c00]',
-                            'from-[#e91e63] to-[#c2185b]',
-                            'from-[#9c27b0] to-[#7b1fa2]',
-                            'from-[#00bcd4] to-[#0097a7]',
-                            'from-[#ff5722] to-[#e64a19]',
-                            'from-[#607d8b] to-[#455a64]',
-                        ];
-                        const gradient = colors[index % colors.length];
-
-                        return (
-                            <Link
-                                key={category.id}
-                                href={`/categories/${category.slug}`}
-                                className="group relative block"
-                            >
-                                <div className={`
-                                    relative p-8 bg-[var(--card-bg)] rounded-2xl 
-                                    border-2 border-[#8bc34a] overflow-hidden
-                                    transition-all duration-500 group-hover:scale-105 
-                                    group-hover:shadow-2xl group-hover:shadow-[#8bc34a]/30
-                                    hover:border-transparent
-                                `}>
-                                    {/* Градиентен фон при hover */}
-                                    <div className={`
-                                        absolute inset-0 bg-gradient-to-br ${gradient} 
-                                        opacity-0 group-hover:opacity-100 transition-opacity duration-500
-                                    `}></div>
-
-                                    {/* Икона */}
-                                    <div className="relative z-10 mb-4">
-                                        <div className={`
-                                            w-20 h-20 mx-auto rounded-full 
-                                            bg-[#8bc34a]/20 group-hover:bg-white/20
-                                            flex items-center justify-center
-                                            transition-all duration-500 group-hover:scale-110
-                                        `}>
-                                            <i className={`fas ${icon} text-4xl text-[#8bc34a] group-hover:text-white transition-colors duration-500`}></i>
-                                        </div>
-                                    </div>
-
-                                    {/* Име на категория */}
-                                    <h2 className="relative z-10 text-2xl font-bold text-[#8bc34a] group-hover:text-white transition-colors duration-500 mb-2">
-                                        {category.name}
-                                    </h2>
-
-                                    {/* Описание */}
-                                    {getDescription(category) && (
-                                        <p className="relative z-10 text-sm text-gray-400 group-hover:text-white/90 transition-colors duration-500 line-clamp-2">
-                                            {getDescription(category)}
-                                        </p>
-                                    )}
-
-                                    {/* Брой продукти - вече реален */}
-                                    <div className="relative z-10 mt-4 inline-block px-3 py-1 rounded-full bg-[#8bc34a]/20 text-[#8bc34a] text-xs font-semibold group-hover:bg-white/20 group-hover:text-white transition-all duration-500">
-                                        <i className="fas fa-box mr-1"></i>
-                                        {productCounts[category.id] || 0} продукта
-                                    </div>
-
-                                    {/* Стрелка за навигация */}
-                                    <div className="absolute bottom-4 right-4 z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                                        <div className="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center">
-                                            <i className="fas fa-arrow-right text-white"></i>
-                                        </div>
-                                    </div>
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+                    {categories.map((category: any, index: number) => (
+                        <Link
+                            key={category.id}
+                            href={`/categories/${category.slug}`}
+                            className="group block animate-card"
+                            style={{ animationDelay: `${index * 0.1}s` }}
+                        >
+                            <div className="glass-card p-8 text-center hover:scale-105 transition-all duration-300">
+                                <div className="w-24 h-24 mx-auto mb-4 rounded-full bg-gradient-to-br from-[#8bc34a] to-[#9ccc65] flex items-center justify-center">
+                                    <i className={`fas ${categoryIcons[category.name] || 'fa-folder'} text-3xl text-white`}></i>
                                 </div>
-                            </Link>
-                        );
-                    })}
+                                <h3 className="text-2xl font-bold text-[#8bc34a] mb-2">{category.name}</h3>
+                                {getDescription(category) && (
+                                    <p className="text-gray-400 text-sm mb-3">{getDescription(category)}</p>
+                                )}
+                                <div className="inline-block px-4 py-2 rounded-full bg-[#8bc34a]/20 text-[#8bc34a] text-sm">
+                                    {productCounts[category.id] || 0} продукта
+                                </div>
+                            </div>
+                        </Link>
+                    ))}
                 </div>
             )}
         </div>
