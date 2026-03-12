@@ -1,22 +1,9 @@
 const API_URL = process.env.NEXT_PUBLIC_API_URL || 'https://sacred-moonlight-34cc5fdcc7.strapiapp.com/api';
 
 // ============================================
-// ПРОДУКТИ
+// ТИПОВЕ
 // ============================================
 
-// ВЗИМАНЕ НА ВСИЧКИ ПРОДУКТИ
-export async function fetchProducts() {
-  try {
-    const res = await fetch(`${API_URL}/products?populate=*`);
-    if (!res.ok) return { data: [] };
-    const data = await res.json();
-    return data;
-  } catch (error) {
-    console.warn('Error fetching products:', error);
-    return { data: [] };
-  }
-}
-// Добавете този интерфейс най-отгоре във файла
 export interface StrapiImage {
   id: number;
   documentId: string;
@@ -34,7 +21,6 @@ export interface StrapiImage {
   url: string;
 }
 
-// Актуализирайте типа за продукт
 export interface StrapiProduct {
   id: number;
   documentId: string;
@@ -44,9 +30,27 @@ export interface StrapiProduct {
   price: number;
   stock: number;
   featured: boolean;
-  images?: StrapiImage[];  // Променено - директен масив
+  images?: StrapiImage[];
   category?: any[];
 }
+
+// ============================================
+// ПРОДУКТИ
+// ============================================
+
+// ВЗИМАНЕ НА ВСИЧКИ ПРОДУКТИ
+export async function fetchProducts() {
+  try {
+    const res = await fetch(`${API_URL}/products?populate=*`);
+    if (!res.ok) return { data: [] };
+    const data = await res.json();
+    return data;
+  } catch (error) {
+    console.warn('Error fetching products:', error);
+    return { data: [] };
+  }
+}
+
 // ВЗИМАНЕ НА ЕДИН ПРОДУКТ ПО SLUG
 export async function fetchProduct(slug: string) {
   try {
@@ -77,7 +81,6 @@ export async function fetchFeaturedProducts() {
 // КАТЕГОРИИ
 // ============================================
 
-// ВЗИМАНЕ НА ВСИЧКИ КАТЕГОРИИ
 export async function fetchCategories() {
   try {
     console.log('🔍 Fetching all categories...');
@@ -95,7 +98,6 @@ export async function fetchCategories() {
   }
 }
 
-// ВЗИМАНЕ НА ЕДНА КАТЕГОРИЯ ПО SLUG
 export async function fetchCategory(slug: string) {
   try {
     console.log('🔍 Fetching category with slug:', slug);
@@ -114,12 +116,10 @@ export async function fetchCategory(slug: string) {
 // ПРОДУКТИ ПО КАТЕГОРИЯ
 // ============================================
 
-// ВЗИМАНЕ НА ПРОДУКТИ ПО КАТЕГОРИЯ
 export async function fetchProductsByCategory(categorySlug: string) {
   try {
     console.log('🔍 Търсене на продукти за категория:', categorySlug);
     
-    // В Strapi 5, category е масив, затова търсим по category.slug
     const res = await fetch(
       `${API_URL}/products?filters[category][slug][$eq]=${categorySlug}&populate=*`
     );
@@ -143,7 +143,6 @@ export async function fetchProductsByCategory(categorySlug: string) {
 // БРОЙ ПРОДУКТИ В КАТЕГОРИЯ
 // ============================================
 
-// ВЗИМАНЕ НА БРОЙ ПРОДУКТИ В КАТЕГОРИЯ
 export async function fetchProductCountByCategory(categorySlug: string) {
   try {
     console.log('🔍 Търсене на брой продукти за категория:', categorySlug);
