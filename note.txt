@@ -1,0 +1,168 @@
+
+  "data": [
+    {
+      "id": 3,
+      "documentId": "ft4aaf8zxsxqd06ndg99pk1n",
+      "name": "Лаптоп Lenovo ThinkPad",
+      "slug": "laptop-lenovo-think-pad",
+      "description": null,
+      "price": 1899.99,
+      "stock": 4,
+      "featured": true,
+      "createdAt": "2026-03-12T00:43:05.898Z",
+      "updatedAt": "2026-03-12T00:43:18.039Z",
+      "publishedAt": "2026-03-12T00:43:18.084Z",
+      "images": [
+        {
+          "id": 1,
+          "documentId": "bpitrnnp9nkbx6bbuwzqouk3",
+          "name": "laptop.png",
+          "alternativeText": "Stylized purple laptop displaying a dashboard interface with various colorful data elements.",
+          "caption": "This stylized laptop icon represents a digital dashboard or presentation, showcasing data visually with colorful charts and graphs.",
+          "focalPoint": null,
+          "width": 512,
+          "height": 512,
+          "formats": {
+            "thumbnail": {
+              "name": "thumbnail_laptop.png",
+              "hash": "thumbnail_laptop_43414f7305",
+              "ext": ".png",
+              "mime": "image/png",
+              "path": null,
+              "width": 156,
+              "height": 156,
+              "size": 3.91,
+              "sizeInBytes": 3907,
+              "url": "/uploads/thumbnail_laptop_43414f7305.png"
+            },
+            "small": {
+              "name": "small_laptop.png",
+              "hash": "small_laptop_43414f7305",
+              "ext": ".png",
+              "mime": "image/png",
+              "path": null,
+              "width": 500,
+              "height": 500,
+              "size": 10.07,
+              "sizeInBytes": 10070,
+              "url": "/uploads/small_laptop_43414f7305.png"
+            }
+          },
+          "hash": "laptop_43414f7305",
+          "ext": ".png",
+          "mime": "image/png",
+          "size": 2.09,
+          "url": "/uploads/laptop_43414f7305.png",
+          "previewUrl": null,
+          "provider": "local",
+          "provider_metadata": null,
+          "createdAt": "2026-03-12T00:42:54.044Z",
+          "updatedAt": "2026-03-12T00:42:59.033Z",
+          "publishedAt": "2026-03-12T00:42:54.045Z"
+        }
+      ],
+      "category": [
+        {
+          "id": 4,
+          "documentId": "tolc6r14bclnbffmb0yzl8pa",
+          "name": "Лаптопи",
+          "slug": "laptops",
+          "createdAt": "2026-03-12T00:13:22.877Z",
+          "updatedAt": "2026-03-12T00:13:22.877Z",
+          "publishedAt": "2026-03-12T00:13:22.899Z"
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "documentId": "tu1ch0lqaspc3fbymlrm2p7q",
+      "name": "Смартфон Samsung Galaxy S23",
+      "slug": "smartfon-samsung-galaxy-s23",
+      "description": [
+        {
+          "type": "paragraph",
+          "children": [
+            {
+              "type": "text",
+              "text": "Мощен смартфон с 256GB памет, 8GB RAM и отлична камера"
+            }
+          ]
+        }
+      ],
+      "price": 1299.99,
+      "stock": 5,
+      "featured": true,
+      "createdAt": "2026-03-12T00:44:38.642Z",
+      "updatedAt": "2026-03-12T00:44:38.642Z",
+      "publishedAt": "2026-03-12T00:44:38.656Z",
+      "images": [
+        {
+          "id": 2,
+          "documentId": "it60cxlo6rh9uwel24uh2vlj",
+          "name": "iphone.png",
+          "alternativeText": "A white smartphone displays colorful app icons on its bright screen.",
+          "caption": "This white smartphone showcases a vibrant collection of app icons on its bright screen, illustrating modern mobile technology.",
+          "focalPoint": null,
+          "width": 512,
+          "height": 512,
+          "formats": {
+            "thumbnail": {
+              "name": "thumbnail_iphone.png",
+              "hash": "thumbnail_iphone_6078ca770d",
+              "ext": ".png",
+              "mime": "image/png",
+              "path": null,
+              "width": 156,
+              "height": 156,
+              "size": 10.3,
+              "sizeInBytes": 10304,
+              "url": "/uploads/thumbnail_iphone_6078ca770d.png"
+            },
+            "small": {
+              "name": "small_iphone.png",
+              "hash": "small_iphone_6078ca770d",
+              "ext": ".png",
+              "mime": "image/png",
+              "path": null,
+              "width": 500,
+              "height": 500,
+              "size": 30.63,
+              "sizeInBytes": 30630,
+              "url": "/uploads/small_iphone_6078ca770d.png"
+            }
+          },
+          "hash": "iphone_6078ca770d",
+          "ext": ".png",
+          "mime": "image/png",
+          "size": 4.58,
+          "url": "/uploads/iphone_6078ca770d.png",
+          "previewUrl": null,
+          "provider": "local",
+          "provider_metadata": null,
+          "createdAt": "2026-03-12T00:44:30.893Z",
+          "updatedAt": "2026-03-12T00:44:34.443Z",
+          "publishedAt": "2026-03-12T00:44:30.894Z"
+        }
+      ],
+      "category": [
+        {
+          "id": 2,
+          "documentId": "l8l78x58w274e5nb2glbjmkl",
+          "name": "Смартфони",
+          "slug": "smartphones",
+          "createdAt": "2026-03-12T00:12:55.054Z",
+          "updatedAt": "2026-03-12T00:12:55.054Z",
+          "publishedAt": "2026-03-12T00:12:55.105Z"
+        }
+      ]
+    }
+  ],
+  "meta": {
+    "pagination": {
+      "page": 1,
+      "pageSize": 25,
+      "pageCount": 1,
+      "total": 2
+    }
+  }
+}
