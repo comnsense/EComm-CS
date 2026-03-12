@@ -16,7 +16,37 @@ export async function fetchProducts() {
     return { data: [] };
   }
 }
+// Добавете този интерфейс най-отгоре във файла
+export interface StrapiImage {
+  id: number;
+  documentId: string;
+  name: string;
+  alternativeText: string | null;
+  caption: string | null;
+  width: number;
+  height: number;
+  formats?: {
+    thumbnail?: { url: string };
+    small?: { url: string };
+    medium?: { url: string };
+    large?: { url: string };
+  };
+  url: string;
+}
 
+// Актуализирайте типа за продукт
+export interface StrapiProduct {
+  id: number;
+  documentId: string;
+  name: string;
+  slug: string;
+  description: any;
+  price: number;
+  stock: number;
+  featured: boolean;
+  images?: StrapiImage[];  // Променено - директен масив
+  category?: any[];
+}
 // ВЗИМАНЕ НА ЕДИН ПРОДУКТ ПО SLUG
 export async function fetchProduct(slug: string) {
   try {

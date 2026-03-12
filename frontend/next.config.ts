@@ -10,6 +10,8 @@ const nextConfig: NextConfig = {
         pathname: '/uploads/**',
       },
     ],
+    // Важно за правилно зареждане
+    unoptimized: true, // Това ще реши проблема временно
   },
 };
 
