@@ -5,6 +5,13 @@
 ![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue)
 ![TailwindCSS](https://img.shields.io/badge/TailwindCSS-3.0-green)
 ![License](https://img.shields.io/badge/license-MIT-green)
+# 🛍️ EComm-CS -  eCommerce проект
+
+![Next.js](https://img.shields.io/badge/Next.js-16-black)
+![Strapi](https://img.shields.io/badge/Strapi-5-blue)
+![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue)
+![TailwindCSS](https://img.shields.io/badge/TailwindCSS-3.0-green)
+![License](https://img.shields.io/badge/license-MIT-green)
 
 ## 📋 Описание
 
@@ -183,9 +190,9 @@ Endpoint Метод Описание
 ---
 
 
-###  🚀 Deployment
+## 🚀 Deployment
 
-Backend (Strapi) - Render.com
+### Backend (Strapi) - Render.com
 
 1. Качете кода в GitHub
 2. Регистрация в Render
@@ -193,17 +200,12 @@ Backend (Strapi) - Render.com
 4. Build Command: npm install && npm run build
 5. Start Command: npm run start
 
-Frontend (Next.js) - Vercel
-
-
+### Frontend (Next.js) - Vercel
    ```
    NEXT_PUBLIC_API_URL=https://xxxxx-backend-url.onrender.com/api
    ```
-
 ---
-
 📄 Лиценз
-
 Този проект е лицензиран под MIT License.
 
 ---
